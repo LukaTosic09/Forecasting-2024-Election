@@ -2,7 +2,10 @@
 
 ## Overview
 
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
+Tentative README to be changed. File Structure and LLM statements below to be changed as well. Overview to be updated as well.
+
+This project outlines a paper forecasting the 2024 US General election.
+
 
 
 ## File Structure
