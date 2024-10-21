@@ -1,13 +1,15 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Forecasting the 2024 US General Election"
+subtitle: "Analyzing pollster data"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Sakura Hu
+  - Luka Tosic
+thanks: "Code and data are available at: https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "This paper uses the poll of polls method to create a general linear model to predict the outcome of the 2024 US general election.
+We find that current polling predicts ______ as the winner of the election. Third sentence. A limitation of the model is that it does not account for the electoral college in predicting the result, and is thus based only on the 
+popular vote."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -22,13 +24,19 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
+^^^^^Sakura, I wasn't sure if I should delete the dummy code, I just kept it in for now^^^^^
+
 
 # Introduction
 
 You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
 
-The remainder of this paper is structured as follows. @sec-data....
+The US presidental election ...
 
+
+# Estimand
+
+Lorem Ipsum # lorem ipsum is just a placeholder in case it's unfamiliar
 
 
 # Data {#sec-data}
@@ -71,6 +79,11 @@ analysis_data |>
 ```
 
 Talk way more about it. 
+
+
+# Measurement
+
+Lorem Ipsum
 
 
 
@@ -123,7 +136,7 @@ first_model <-
 #| echo: false
 #| eval: true
 #| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
+#| tbl-cap: "Lorem Ipsum"
 #| warning: false
 
 modelsummary::modelsummary(
@@ -156,7 +169,13 @@ Weaknesses and next steps should also be included.
 
 \appendix
 
-# Appendix {-}
+# Appendix 1 {-}
+
+Lorem Ipsum
+
+# Appendix 2 {-} #what is {-}?
+
+Lorem Ipsum
 
 
 # Additional data details
