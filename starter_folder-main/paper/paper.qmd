@@ -25,6 +25,7 @@ library(palmerpenguins)
 ```
 
 ^^^^^Sakura, I wasn't sure if I should delete the dummy code, I just kept it in for now^^^^^
+Also, I would recommend creating a new branch locally to work in and push to, after which we can merge work into the main branch
 
 
 # Introduction
@@ -36,12 +37,18 @@ The US presidental election ...
 
 # Estimand
 
-Lorem Ipsum # lorem ipsum is just a placeholder in case it's unfamiliar
+^^^^^(discuss this)
+
+Lorem Ipsum 
 
 
 # Data {#sec-data}
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+^^^^^^(I can write the whole of this section myself)
+
+Our data is the Project 538 (idk how to cite them) Presidential General Election polls (current cycle) from October 17th. It contains 16000 observations of polls with __ unique polls with unque poll id from __ pollsters with unique pollster id. The methodology of each poll was as an online panel, an app panel, a live phone call, ... , and/or a probability panel. Each poll has been given an associated pollscore, numeric grade and transparency score. We also know the duration of the poll by start and end date, as well as the time of publication and the number of particpants. The candidate sponsoring each poll is given as well as the candidate endorsed by each poll. Of course, each poll has a predicted outcome which is captured in the data by the 
+
+-> There's a lot of other variables, but they mostly seem redundent to talk about, however we are still expected to explain them.
 
 ```{r}
 #| label: fig-bills
@@ -59,7 +66,7 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 Talk more about it.
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+Lorem Ipsum
 
 ```{r}
 #| label: fig-planes
@@ -89,13 +96,21 @@ Lorem Ipsum
 
 # Model
 
-The goal of our modelling strategy is twofold. Firstly,...
+^^^^^^(We need to discuss this)
 
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
+We will use the poll of polls method to create a generalized linear model to create a logistic regression model to predict the outcome of the general election. This method allows us to get a more comprehensive estimate of election outcomes,
+
+
+# (from the starter code) Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
 
 ## Model set-up
 
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
+^^^^^(Discuss this as well)
+
+Our model will be of the form: logistic regression model logit(P)=log(p/1-p)=Y=Beta_0*x_1 + ... + Beta_k*x_k, p = c(x_0, x_1, ... , x_k)
+We define $Y$ the response variable as the the winner of the election, this variable come from the answer column in the raw dataset.
+
+# (from starter code) Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
 
 \begin{align} 
 y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
@@ -111,9 +126,7 @@ We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use
 
 ### Model justification
 
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
+Lorem Ipsum
 
 
 # Results
