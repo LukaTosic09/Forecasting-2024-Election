@@ -1,20 +1,745 @@
-width,length,flying_time
-70,111,1.83
-57,127,2.32
-59,92,2.05
-70,75,1.1
-62,112,2.32
-68,103.5,0.5
-58,108,1.7
-79,114,0.86
-56,186,3.42
-87,68,1.37
-50,118,2.68
-49,186,1.83
-61,116,1.32
-60,127,1
-56,184,2.79
-69,124,1.4
-60,95,1.12
-44,137,1.28
-63,125,1.35
+swing_state,candidate_name,pct
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,51
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,50
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,49
+Georgia,Kamala Harris,47
+Georgia,Donald Trump,49
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,48
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,49
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,47
+Nevada,Kamala Harris,49
+Nevada,Donald Trump,45
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,49
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,48
+Wisconsin,Kamala Harris,47
+Wisconsin,Donald Trump,48
+Michigan,Kamala Harris,47.4
+Michigan,Donald Trump,48.5
+North Carolina,Kamala Harris,46.6
+North Carolina,Donald Trump,47.2
+Georgia,Kamala Harris,45
+Georgia,Donald Trump,52
+Georgia,Kamala Harris,46
+Georgia,Donald Trump,52
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,47
+North Carolina,Kamala Harris,50
+North Carolina,Donald Trump,47
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,47
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,45
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,47
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,45
+Arizona,Kamala Harris,46
+Arizona,Donald Trump,51
+Arizona,Kamala Harris,45
+Arizona,Donald Trump,50
+Arizona,Kamala Harris,45
+Arizona,Donald Trump,51
+Arizona,Kamala Harris,44
+Arizona,Donald Trump,49
+Georgia,Kamala Harris,47
+Georgia,Donald Trump,50
+Michigan,Kamala Harris,46
+Michigan,Donald Trump,48
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,48
+Pennsylvania,Kamala Harris,49.2
+Pennsylvania,Donald Trump,45.3
+Pennsylvania,Kamala Harris,47.5
+Pennsylvania,Donald Trump,48.9
+Pennsylvania,Kamala Harris,48.5
+Pennsylvania,Donald Trump,44.9
+Pennsylvania,Kamala Harris,48.3
+Pennsylvania,Donald Trump,49
+Pennsylvania,Kamala Harris,46
+Pennsylvania,Donald Trump,45
+Pennsylvania,Kamala Harris,47
+Pennsylvania,Donald Trump,49
+Arizona,Kamala Harris,48.2
+Arizona,Donald Trump,50.5
+Georgia,Kamala Harris,49.8
+Georgia,Donald Trump,49.7
+Michigan,Kamala Harris,49.7
+Michigan,Donald Trump,49.6
+Nevada,Kamala Harris,49.2
+Nevada,Donald Trump,48.1
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,49.9
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,49.7
+Wisconsin,Kamala Harris,49.2
+Wisconsin,Donald Trump,49.9
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,49
+Michigan,Kamala Harris,51
+Michigan,Donald Trump,48
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,49
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,48
+Michigan,Kamala Harris,47
+Michigan,Donald Trump,50
+Michigan,Kamala Harris,47
+Michigan,Donald Trump,51
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,47
+Wisconsin,Kamala Harris,46
+Wisconsin,Donald Trump,48
+Wisconsin,Kamala Harris,47
+Wisconsin,Donald Trump,49
+Nevada,Kamala Harris,49
+Nevada,Donald Trump,49
+Arizona,Kamala Harris,46
+Arizona,Donald Trump,50
+Pennsylvania,Kamala Harris,46.8
+Pennsylvania,Donald Trump,44.7
+Arizona,Kamala Harris,47
+Arizona,Donald Trump,49
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,50
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,49
+Arizona,Kamala Harris,47.7
+Arizona,Donald Trump,49.1
+Nevada,Kamala Harris,48.4
+Nevada,Donald Trump,49.3
+North Carolina,Kamala Harris,49.3
+North Carolina,Donald Trump,49.5
+Georgia,Kamala Harris,48.3
+Georgia,Donald Trump,48.1
+Arizona,Kamala Harris,47.6
+Arizona,Donald Trump,45.4
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,50
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,50
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,49
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,49
+Georgia,Kamala Harris,44
+Georgia,Donald Trump,50
+Georgia,Kamala Harris,45
+Georgia,Donald Trump,50
+Arizona,Kamala Harris,47
+Arizona,Donald Trump,46
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,46
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,48
+Arizona,Kamala Harris,47.6
+Arizona,Donald Trump,51.7
+North Carolina,Kamala Harris,49.1
+North Carolina,Donald Trump,49.9
+Pennsylvania,Kamala Harris,49.3
+Pennsylvania,Donald Trump,48.8
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,51
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,47
+North Carolina,Kamala Harris,47.1
+North Carolina,Donald Trump,49.4
+Michigan,Kamala Harris,45
+Michigan,Donald Trump,47
+Michigan,Kamala Harris,43
+Michigan,Donald Trump,46
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,47
+Michigan,Kamala Harris,46
+Michigan,Donald Trump,46
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,45
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,46
+Wisconsin,Kamala Harris,52
+Wisconsin,Donald Trump,48
+Wisconsin,Kamala Harris,52
+Wisconsin,Donald Trump,48
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,43.9
+Nevada,Kamala Harris,49.2
+Nevada,Donald Trump,47.9
+Nevada,Kamala Harris,47.6
+Nevada,Donald Trump,43.3
+Nevada,Kamala Harris,49.7
+Nevada,Donald Trump,48.5
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,48
+Arizona,Kamala Harris,48.6
+Arizona,Donald Trump,49.7
+Arizona,Kamala Harris,48.6
+Arizona,Donald Trump,49.8
+Michigan,Kamala Harris,47.2
+Michigan,Donald Trump,50.6
+Nevada,Kamala Harris,50.6
+Nevada,Donald Trump,47.7
+Nevada,Kamala Harris,50.5
+Nevada,Donald Trump,47.7
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,50.6
+Pennsylvania,Kamala Harris,48.1
+Pennsylvania,Donald Trump,51
+Wisconsin,Kamala Harris,48.2
+Wisconsin,Donald Trump,49.7
+North Carolina,Kamala Harris,50.8
+North Carolina,Donald Trump,47.3
+North Carolina,Kamala Harris,50.5
+North Carolina,Donald Trump,48.1
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,49.3
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,49.6
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,46
+Arizona,Kamala Harris,50
+Arizona,Donald Trump,47
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,46
+Arizona,Kamala Harris,50
+Arizona,Donald Trump,47
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,47
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,47
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,48
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,49
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,45
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,47
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,46
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,47
+Nevada,Kamala Harris,46
+Nevada,Donald Trump,44
+Nevada,Kamala Harris,49
+Nevada,Donald Trump,45
+Nevada,Kamala Harris,50
+Nevada,Donald Trump,44
+Nevada,Kamala Harris,52
+Nevada,Donald Trump,45
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,46
+North Carolina,Kamala Harris,50
+North Carolina,Donald Trump,47
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,47
+North Carolina,Kamala Harris,50
+North Carolina,Donald Trump,48
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,44
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,45
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,46
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,48
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,51
+Wisconsin,Donald Trump,48
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,51
+Arizona,Kamala Harris,47
+Arizona,Donald Trump,49
+Arizona,Kamala Harris,47
+Arizona,Donald Trump,50
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,50
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,51
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,47
+Georgia,Kamala Harris,50
+Georgia,Donald Trump,48
+Georgia,Kamala Harris,51
+Georgia,Donald Trump,48
+Georgia,Kamala Harris,51
+Georgia,Donald Trump,48
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,49
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,47
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,50
+North Carolina,Kamala Harris,50
+North Carolina,Donald Trump,48
+Pennsylvania,Kamala Harris,47
+Pennsylvania,Donald Trump,48
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,49
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,48
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,50
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,50
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,48
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,49
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,48
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,50
+Arizona,Kamala Harris,42.4
+Arizona,Donald Trump,48.4
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,47
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,47
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,49
+Pennsylvania,Kamala Harris,46
+Pennsylvania,Donald Trump,46
+Arizona,Kamala Harris,45
+Arizona,Donald Trump,49
+Arizona,Kamala Harris,45
+Arizona,Donald Trump,50
+Arizona,Kamala Harris,42
+Arizona,Donald Trump,47
+Arizona,Kamala Harris,43
+Arizona,Donald Trump,48
+Georgia,Kamala Harris,44
+Georgia,Donald Trump,48
+Georgia,Kamala Harris,45
+Georgia,Donald Trump,49
+Georgia,Kamala Harris,43
+Georgia,Donald Trump,46
+Georgia,Kamala Harris,44
+Georgia,Donald Trump,47
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,48
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,49
+North Carolina,Kamala Harris,46
+North Carolina,Donald Trump,46
+North Carolina,Kamala Harris,45
+North Carolina,Donald Trump,47
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,49
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,47
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,49
+Pennsylvania,Kamala Harris,47
+Pennsylvania,Donald Trump,48
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,48
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,48
+Nevada,Kamala Harris,47
+Nevada,Donald Trump,44
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,46
+Georgia,Kamala Harris,47.5
+Georgia,Donald Trump,45.4
+Georgia,Kamala Harris,47.6
+Georgia,Donald Trump,47.9
+Georgia,Kamala Harris,46.4
+Georgia,Donald Trump,44.4
+Georgia,Kamala Harris,47.8
+Georgia,Donald Trump,48
+Arizona,Kamala Harris,48.7
+Arizona,Donald Trump,49.8
+Georgia,Kamala Harris,48.2
+Georgia,Donald Trump,50.3
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,49.1
+Nevada,Kamala Harris,48.8
+Nevada,Donald Trump,49
+Pennsylvania,Kamala Harris,49.6
+Pennsylvania,Donald Trump,49.3
+North Carolina,Kamala Harris,49.7
+North Carolina,Donald Trump,49.3
+Wisconsin,Kamala Harris,48.7
+Wisconsin,Donald Trump,50.3
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,52
+Pennsylvania,Donald Trump,47
+Wisconsin,Kamala Harris,53
+Wisconsin,Donald Trump,46
+Arizona,Kamala Harris,48.37
+Arizona,Donald Trump,47.35
+Michigan,Kamala Harris,51.97
+Michigan,Donald Trump,44.46
+Nevada,Kamala Harris,50.87
+Nevada,Donald Trump,46.53
+Pennsylvania,Kamala Harris,48.74
+Pennsylvania,Donald Trump,46.7
+Wisconsin,Kamala Harris,50.22
+Wisconsin,Donald Trump,44.3
+North Carolina,Kamala Harris,49.33
+North Carolina,Donald Trump,47.16
+Georgia,Kamala Harris,47.68
+Georgia,Donald Trump,48.63
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,48
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,49
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,49
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,47
+Michigan,Kamala Harris,52
+Michigan,Donald Trump,47
+North Carolina,Kamala Harris,46
+North Carolina,Donald Trump,48
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,50
+North Carolina,Kamala Harris,45.3
+North Carolina,Donald Trump,45.6
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,45
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,46
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,45
+Michigan,Kamala Harris,51
+Michigan,Donald Trump,46
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,48
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,47
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,48
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,45
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,45
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,47
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,45
+Nevada,Kamala Harris,47
+Nevada,Donald Trump,47
+Nevada,Kamala Harris,46
+Nevada,Donald Trump,43
+Pennsylvania,Kamala Harris,48.4
+Pennsylvania,Donald Trump,49.8
+Georgia,Kamala Harris,44.4
+Georgia,Donald Trump,46.9
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,48.6
+Pennsylvania,Donald Trump,45.6
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,48
+North Carolina,Kamala Harris,45.9
+North Carolina,Donald Trump,48.9
+North Carolina,Kamala Harris,46
+North Carolina,Donald Trump,45
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,48.6
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,46.6
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,48
+Arizona,Kamala Harris,46
+Arizona,Donald Trump,46.2
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,46
+North Carolina,Kamala Harris,50
+North Carolina,Donald Trump,47
+Georgia,Kamala Harris,45
+Georgia,Donald Trump,49
+Georgia,Kamala Harris,46
+Georgia,Donald Trump,49
+Arizona,Kamala Harris,46.89
+Arizona,Donald Trump,49.05
+Michigan,Kamala Harris,49.19
+Michigan,Donald Trump,46.12
+Nevada,Kamala Harris,47.58
+Nevada,Donald Trump,48.45
+Pennsylvania,Kamala Harris,49.34
+Pennsylvania,Donald Trump,46.34
+Wisconsin,Kamala Harris,49.48
+Wisconsin,Donald Trump,46.19
+North Carolina,Kamala Harris,48.22
+North Carolina,Donald Trump,47.82
+Georgia,Kamala Harris,48.39
+Georgia,Donald Trump,47.51
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,46
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,49
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,50
+Wisconsin,Kamala Harris,51
+Wisconsin,Donald Trump,49
+Arizona,Kamala Harris,46
+Arizona,Donald Trump,45.9
+Arizona,Kamala Harris,46.8
+Arizona,Donald Trump,46.7
+Arizona,Kamala Harris,45.8
+Arizona,Donald Trump,45.8
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,47.8
+Wisconsin,Kamala Harris,52
+Wisconsin,Donald Trump,48
+Wisconsin,Kamala Harris,52
+Wisconsin,Donald Trump,48
+Michigan,Kamala Harris,47
+Michigan,Donald Trump,46
+Nevada,Kamala Harris,46.5
+Nevada,Donald Trump,47.9
+Arizona,Kamala Harris,48.4
+Arizona,Donald Trump,48.6
+North Carolina,Kamala Harris,48.4
+North Carolina,Donald Trump,49.2
+Georgia,Kamala Harris,48.3
+Georgia,Donald Trump,47.6
+Arizona,Kamala Harris,44
+Arizona,Donald Trump,49
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,47
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,47
+Pennsylvania,Kamala Harris,47
+Pennsylvania,Donald Trump,47
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,44
+North Carolina,Kamala Harris,46.9
+North Carolina,Donald Trump,47.6
+Arizona,Kamala Harris,47.5
+Arizona,Donald Trump,51.2
+Michigan,Kamala Harris,51.2
+Michigan,Donald Trump,47.6
+Nevada,Kamala Harris,49.4
+Nevada,Donald Trump,48.8
+Pennsylvania,Kamala Harris,49.4
+Pennsylvania,Donald Trump,49.4
+Wisconsin,Kamala Harris,49.1
+Wisconsin,Donald Trump,49.8
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,49.9
+Georgia,Kamala Harris,50.1
+Georgia,Donald Trump,49
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,47
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,48
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,47
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,48
+Arizona,Kamala Harris,48
+Arizona,Donald Trump,47
+Arizona,Kamala Harris,50
+Arizona,Donald Trump,49
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,46
+Georgia,Kamala Harris,50
+Georgia,Donald Trump,48
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,46
+Nevada,Kamala Harris,50
+Nevada,Donald Trump,48
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,48
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,50
+Georgia,Kamala Harris,47
+Georgia,Donald Trump,46
+Georgia,Kamala Harris,49
+Georgia,Donald Trump,47
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,46
+Georgia,Kamala Harris,50
+Georgia,Donald Trump,47
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,46
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,46
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,47
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,47
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,45
+Nevada,Kamala Harris,49
+Nevada,Donald Trump,45
+Nevada,Kamala Harris,48
+Nevada,Donald Trump,46
+Nevada,Kamala Harris,50
+Nevada,Donald Trump,46
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,47
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,47
+North Carolina,Kamala Harris,48
+North Carolina,Donald Trump,48
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,49
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,45
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,47
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,51
+Pennsylvania,Donald Trump,48
+Wisconsin,Kamala Harris,51
+Wisconsin,Donald Trump,44
+Wisconsin,Kamala Harris,52
+Wisconsin,Donald Trump,44
+Wisconsin,Kamala Harris,52
+Wisconsin,Donald Trump,44
+Wisconsin,Kamala Harris,53
+Wisconsin,Donald Trump,44
+Michigan,Kamala Harris,46
+Michigan,Donald Trump,47
+Pennsylvania,Kamala Harris,43
+Pennsylvania,Donald Trump,42.5
+Pennsylvania,Kamala Harris,47
+Pennsylvania,Donald Trump,47
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,42
+Wisconsin,Kamala Harris,51
+Wisconsin,Donald Trump,46
+Michigan,Kamala Harris,44
+Michigan,Donald Trump,43.5
+Michigan,Kamala Harris,47
+Michigan,Donald Trump,48
+Michigan,Kamala Harris,46.4
+Michigan,Donald Trump,44.1
+Michigan,Kamala Harris,48.4
+Michigan,Donald Trump,46
+North Carolina,Kamala Harris,46
+North Carolina,Donald Trump,45
+North Carolina,Kamala Harris,47
+North Carolina,Donald Trump,47
+Michigan,Kamala Harris,46
+Michigan,Donald Trump,48
+Pennsylvania,Kamala Harris,46
+Pennsylvania,Donald Trump,47
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,45
+Pennsylvania,Kamala Harris,46
+Pennsylvania,Donald Trump,46.6
+Arizona,Kamala Harris,44
+Arizona,Donald Trump,47
+Pennsylvania,Kamala Harris,47.8
+Pennsylvania,Donald Trump,47.1
+Nevada,Kamala Harris,46
+Nevada,Donald Trump,48
+Nevada,Kamala Harris,47
+Nevada,Donald Trump,48
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,45
+Arizona,Kamala Harris,50
+Arizona,Donald Trump,45
+Pennsylvania,Kamala Harris,49.3
+Pennsylvania,Donald Trump,50.7
+Wisconsin,Kamala Harris,47
+Wisconsin,Donald Trump,46.1
+Wisconsin,Kamala Harris,47.2
+Wisconsin,Donald Trump,47
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,46
+North Carolina,Kamala Harris,49
+North Carolina,Donald Trump,47
+Georgia,Kamala Harris,44
+Georgia,Donald Trump,51
+Georgia,Kamala Harris,46
+Georgia,Donald Trump,50
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,47
+Michigan,Kamala Harris,48
+Michigan,Donald Trump,48
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,46
+Pennsylvania,Kamala Harris,50
+Pennsylvania,Donald Trump,46
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,47
+Michigan,Kamala Harris,45
+Michigan,Donald Trump,48
+Michigan,Kamala Harris,50
+Michigan,Donald Trump,46
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,46
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,46
+Wisconsin,Kamala Harris,48.3
+Wisconsin,Donald Trump,48.6
+Wisconsin,Kamala Harris,48
+Wisconsin,Donald Trump,45
+Arizona,Kamala Harris,44.4
+Arizona,Donald Trump,41.6
+Pennsylvania,Kamala Harris,48
+Pennsylvania,Donald Trump,48
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,50
+Wisconsin,Kamala Harris,50
+Wisconsin,Donald Trump,49
+Georgia,Kamala Harris,48
+Georgia,Donald Trump,48
+Arizona,Kamala Harris,49
+Arizona,Donald Trump,47
+Georgia,Kamala Harris,47
+Georgia,Donald Trump,47
+Michigan,Kamala Harris,53
+Michigan,Donald Trump,42
+Nevada,Kamala Harris,47
+Nevada,Donald Trump,45
+North Carolina,Kamala Harris,46
+North Carolina,Donald Trump,48
+Pennsylvania,Kamala Harris,46
+Pennsylvania,Donald Trump,50
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,47
+Wisconsin,Kamala Harris,49
+Wisconsin,Donald Trump,50
+Pennsylvania,Kamala Harris,49
+Pennsylvania,Donald Trump,49
+Michigan,Kamala Harris,49
+Michigan,Donald Trump,49
+Arizona,Kamala Harris,47.4
+Arizona,Donald Trump,52.6
+Georgia,Kamala Harris,48.9
+Georgia,Donald Trump,51.1
+Michigan,Kamala Harris,49.1
+Michigan,Donald Trump,50.9
+Wisconsin,Kamala Harris,50.6
+Wisconsin,Donald Trump,49.4
+Pennsylvania,Kamala Harris,48.9
+Pennsylvania,Donald Trump,51.1
+Georgia,Kamala Harris,46.7
+Georgia,Donald Trump,48
