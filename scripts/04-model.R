@@ -6,15 +6,15 @@
 # Contact: tara.chakkithara@icloud.com
 # License: MIT
 
-
-#### Workspace setup ####
+### Required Packages ###
 library(tidyverse)
-library(rstanarm)
 
-#### Read data ####
-analysis_data <- read_csv("data/analysis_data/analysis_data.csv")
+# read data
+data <- read_csv('data/analysis_data/analysis_data.csv')
 
-# phase 1. we can generate the KDEs of pct for each swing state. 
+set.seed(1)
+
+# for all swing states generate KDEs for pct
 generate_state_kde <- function(data, state){
   filtered_data <- data |>
     filter(swing_state == state)
@@ -23,7 +23,7 @@ generate_state_kde <- function(data, state){
   return(kde_data)
 }
 
-# phase 2. we can simulate a pct value for each state. 
+# simulate a pct for a state
 simulate <- function(data, state) {
   kde_data <- generate_state_kde(data, state)
   random_sample <- sample(kde_data$x, size = 1, prob = kde_data$y,
@@ -32,18 +32,16 @@ simulate <- function(data, state) {
   return(random_sample/100)
 }
 
-# phase 3. we can allocate seats per swing state.
+# generate seats based on simulated pct for a swing state
 add_seats <- function(data, state, seats) {
   prob_win <- simulate(data, state)
-  # here we use pct to generate a win or a loss. 
   outcome <- rbinom(1, 1, prob_win)
   return(seats * outcome)
 }
 
-# phase 4. we can simulate a single election.
+# simulate an election round
 simulate_election <- function(data) {
-  # we initially assign trump all the red states and randomly allocate 
-  # seats based on pct scores. 
+  # initially set seat count to include red states
   seats <- 219
   seats <- seats + add_seats(data, "Arizona", 11)
   seats <- seats + add_seats(data, "Nevada", 6)
@@ -55,7 +53,7 @@ simulate_election <- function(data) {
   return(seats / 538)
 }
 
-# phase 5. we can simulate an election multiple times. 
+# helper to simulate the election multiple times. 
 monte_carlo_simulation <- function(data, num_simulations) {
   results <- numeric(num_simulations)
   
@@ -66,14 +64,15 @@ monte_carlo_simulation <- function(data, num_simulations) {
   return(results)
 }
 
-# phase 6. using all simulations we can update our beta prior. 
+# update the beta prior with a learning rate of 0.001 to prevent overfitting. 
 update_beta_prior <- function(prior_alpha, prior_beta, data, num_simulations){
   total_simulations <- monte_carlo_simulation(data, num_simulations)
-  wins <- sum(total_simulations > 0.50)
-  losses <- length(total_simulations) - wins
   
-  updated_alpha <- prior_alpha + wins
-  updated_beta <- prior_beta + losses
+  learning_rate <- 0.001
+  wins <- sum(total_simulations > 0.5)
+  losses = length(total_simulations) - wins
+  updated_alpha <- prior_alpha + wins * learning_rate
+  updated_beta <- prior_beta + losses * learning_rate
   
   x <- seq(0, 1, length.out = 100)
   prior_density <- dbeta(x, prior_alpha, prior_beta)
@@ -84,15 +83,14 @@ update_beta_prior <- function(prior_alpha, prior_beta, data, num_simulations){
     density = c(prior_density, updated_density),
     type = rep(c("Prior", "Updated"), each = length(x))
   )
-  
-  ggplot(plot_data, aes(x = x, y = density, color = type)) +
-    geom_line(size = 1) +
-    labs(title = "Prior and Updated Beta Distributions",
-         x = "Probability of Winning",
-         y = "Density") +
-    theme_minimal() +
-    scale_color_manual(values = c("blue", "red")) +
-    theme(legend.title = element_blank())
+  result <- list(
+    prior = list(alpha = prior_alpha, beta = prior_beta),
+    updated = list(alpha = updated_alpha, beta = updated_beta),
+    plot_data = plot_data
+  )
+  saveRDS(result, './models/model.rds')
 }
 
-
+# since Donald Trump is running against a woman again 
+# our prior mode is based on 2016 election results. run 10000 simulated elections. 
+update_beta_prior(4, 3, data, 10000)
