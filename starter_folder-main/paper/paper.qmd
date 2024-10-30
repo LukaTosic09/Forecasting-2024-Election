@@ -7,9 +7,7 @@ author:
 thanks: "Code and data are available at: https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
-abstract: "This paper uses the poll of polls method to create a general linear model to predict the outcome of the 2024 US general election.
-We find that current polling predicts ______ as the winner of the election. Third sentence. A limitation of the model is that it does not account for the electoral college in predicting the result, and is thus based only on the 
-popular vote."
+abstract: "This paper uses the poll of polls method to create a general linear model to predict the outcome of the 2024 US general election.We find that current polling predicts ______ as the winner of the election. Third sentence. A limitation of the model is that it does not account for the electoral college in predicting the result, and is thus based only on the popular vote."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -21,10 +19,15 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(janitor)
+library(lubridate)
+library(broom)
+library(modelsummary)
+library(rstanarm)
+library(splines)
+
 ```
 
-^^^^^Sakura, I wasn't sure if I should delete the dummy code, I just kept it in for now^^^^^
 
 
 # Introduction
@@ -34,27 +37,46 @@ You can and should cross-reference sections and sub-sections. We use @citeR and 
 The US presidental election ...
 
 
-# Estimand
+#Estimand
 
 Lorem Ipsum # lorem ipsum is just a placeholder in case it's unfamiliar
 
 
 # Data {#sec-data}
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+Our data is the Project 538 Presidential General Election polls dataset (current cycle) from October 17th. It contains roughly 16000 observations of polls with __ unique polls with unque poll id from __ pollsters with unique pollster id. The methodology of each poll was as an online panel, an app panel, a live phone call, ... , and/or a probability panel. Each poll has been given an associated pollscore, numeric grade and transparency score. We also know the duration of the poll by start and end date, as well as the time of publication and the number of particpants. The candidate sponsoring each poll is given as well as the candidate endorsed by each poll. Of course, each poll has a predicted outcome which is captured in the data by the 
+
+Each poll has an associated pollster, and each pollster is assigned a numeric grade (0.5 to 3.0) and pollscore (-1 to 1) corresponding to the quality and reliability of the pollster and a transparency score (0 to 10) corresponding to the level of transparency the pollster provides in regards to their methodology. Furthemore, each poll has an associated methodology.
+
+Importantly for our modeling, ...
+
 
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
+#| include: false
+#| warning: false
+#| message: false
 #| echo: false
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+election_data <- read.csv("../data/raw_data/president_polls.csv")
+real_data <- election_data %>% filter(hypothetical=="false", answer == "Harris")
+
+
+real_data <- real_data %>% mutate(national = ifelse(is.na(state), TRUE, FALSE))
+quality_data <- real_data %>% filter(sample_size >= 1000, numeric_grade>=3.0)
+
+#still having trouble with dates
+#real_data$end_date <- as.Date(real_data$end_date, format="%d/%m/%y")
+#real_data <- real_data %>% mutate(end_date = mdy(end_date))# %>% filter(!is.na(end_date))
+#fixed_date <- ymd("2024-25-10")
+#real_data$recency <- as.numeric(difftime(fixed_date, real_data$end_date, units = "days"))
+real_data %>% mutate(end_date = mdy(end_date))
+
+```
+
+
+
+```{r}
+ggplot(real_data, aes(x=numeric_grade, y=pollscore)) + geom_point() + geom_smooth(formula = y ~ x, method = "lm",se = FALSE)+labs(title = "what's the relationship even?")
 ```
 
 Talk more about it.
@@ -62,20 +84,35 @@ Talk more about it.
 And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
 
 ```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
 #| echo: false
 #| warning: false
 #| message: false
+#| label: tbl-predictor vs response plots
+#| height: 20
+#| width: 6
 
-analysis_data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
+ggplot(real_data, aes(x=pollster, y=pct)) + geom_point() + geom_smooth(formula = y ~ x , method = "lm", color = "black", se = FALSE) + labs(title = "pollster vs pct") #+ theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
+ggplot(real_data, aes(x=state, y=pct)) + geom_point() + geom_smooth(formula = y ~ x , method = "lm", color = "black", se = FALSE) + labs(title = "state vs pct") +  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+ggplot(real_data, aes(x=methodology, y=pct)) + geom_point() + geom_smooth(formula = y ~ x , method = "lm", color = "black", se = FALSE) + labs(title = "method vs pct") #+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+ggplot(real_data, aes(x=methodology)) + geom_bar() + labs(title="methodology occurences") +   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+ggplot(real_data, aes(x=partisan, y=pct)) + geom_point() + geom_smooth(formula = y ~ x , method = "lm", color = "black", se = FALSE) + labs(title = "partisan vs pct") +  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+```
+
+```{r}
+ggplot(real_data, aes(x=sponsor_candidate_party, y=pct)) + geom_point() + geom_smooth(formula = y ~ x , method = "lm", color = "black", se = FALSE) + labs(title = "sponsor party vs pct") +  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+ggplot(real_data, aes(x=transparency_score, y=numeric_grade)) + geom_point() + geom_smooth(formula = y ~ x , method = "lm", color = "black", se = FALSE) + labs(title = "trans vs poll") +  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```
+
+```{r}
+test_model <- lm(pct ~ end_date + state, data = quality_data)
+test_model
+
 ```
 
 Talk way more about it. 
@@ -173,9 +210,63 @@ Weaknesses and next steps should also be included.
 
 Lorem Ipsum
 
-# Appendix 2 {-} #what is {-}?
+# Appendix 2 {Idealized Survey} 
 
-Lorem Ipsum
+We are provided a budget of $100'000 to forecast the 2024 presidential election. First we must define our key terms. We are looking to forecast the winner of the US general election, so our key parameter of interest for survey participants is the candidate they would support and/or vote for. There are other secondary parameters to discuss later. Our target population is registered voters in the US as they would be the ones informing our parameter of interest, with our sampling frame being registered voters that we can reach with our survey. The sample then is the registered voters who end up taking the survey. We must also define a sample size that is both realistically achievable, and adequately large to make a meaningful prediction of the election winner. A sample size in the range of 2500-6000 is within the realm of possibility and would be sufficient.
+
+#2.1 Sampling
+
+The first task is to develop a sample from a sampling frame through some sample method(s). We would make use of our large budget in order to go about a probabilistic sampling strategy, specifically a stratified sampling approach with additional simple random sampling within the given strata. We would stratify along state, age, education, sex, income, and self-identified political affiliation. The motivation behind these strata is that we know these factors create bias; note that democrats are more likely to answer surveys [], as are those with higher educational attainment []. Additionally, certain battleground states as they are referred to like Georgia or Pennsylvania are important to gather data on as they are considered the most important states in deciding the election []; another reason is that the US population is not split evenly among states, and even in a large poll we would expect only a small, and less reliable amount of responses from certain states with smaller populations.
+
+The specifics of the stratification along the various strata will depend on facts about distribution of population, educational attainment, age, sex, and more among registered voters. Once such statistics are collected likely through census data, we can specify the quantities we hope to see in our sample. ie if we have a sample of size n, and a population of registered voters in a given state of x, we hope to see in our data (x*n)/y where y is the number of registered voters in th US.
+
+#2.2 Survey Method
+
+The survey method we will employ is an online panel of questions in the form of a Google form. These forms are secure and anonymous, and provide a simple way to store the results we receive. Additionally, the format is low cost to produce and takes no additional labour to maintain unless issues arise, in contrast with a live phone that must be either directly manned or monitored. Another advantage is the transparency provided, users can read and reread instructions, and return to questions they are unsure of easily. Keeping the form short, up to 15 minutes can help stave of disengagement from possible participants.
+
+The maintaining of the survey would take some paid labour. The survey would run for 1 to 2 weeks over the course of 3 months prior to the election as a way to collect data that captures shifting trends in public opinion. Doing this would require us to note when the survey was submitted.
+
+#2.3 Recruitment
+
+Distributing the survey will require multiple things. We must choose how we will distribute the survey. To keep people who are not registered voters from answering, there must be a way for participants to verify that they are registered voters. We propose they register with an email to receive the survey, and they would only receive the survey if their information matches a registered voter in the US, this system would have to be automated and not save sensitive information in order to maintain anonymity. Of course, we'd need to somehow access information on registered voters in the US. Such a system would of course take a portion of our budget to implement
+
+In order to incentivize participation, we could allocate part of the budget to providing a incentive of monetary value for participants. Something like a small giftcard or voucher that is guaranteed upon survey submission. 
+
+To reach potential participants, a campaign to send advertise the survey would be launched. We could pay businesses to send a promotional email to users of their service, particularly of services used by demographics we are trying to account for in our strata. A powerful tool for advertising this survey would social media, especially since in the modern day, social media are used by a very wide range of people from the most partisan Republicans and Democrats to the median individual. We can advertise physically as well, more so in states that we are hoping to account for per our stratification.
+
+#2.4 Data Validation
+
+Once the data is collected, it would have to be parsed and cleaned. We would want to know how many questions were unanswered, and to produce basic summary statistics on things like the demographics and state of participants in order to gain an initial understanding of our data. Doing this while the survey is running can tell us if we need to  push it further in certain parts of the nation or to certain groups with the hope of amassing more responses in those categories.
+
+As survey cycles continue, we would clean the data to remove non-sensical or uninterpretable responses as well as automated or repeated responses.
+
+The next part of validation is applying stratification weights to ensure our data conforms to the stratification criteria we outlined above. In other words, apply post-stratification weights to align survey responses with Census-based demographics, using our previously outlined strata as variables. Use iterative proportional fitting (raking) to adjust for sample imbalances.
+
+#2.5 Poll Aggregation and Forecasting
+
+We would aggregate weekly poll results, adjusting for recent responses with higher weights []. Next we would employ Bayesian updating as in our paper to forecast trends based on historical election and polling data, which accounts for typical shifts and volatility in key regions. 
+
+We would also have to account for a margin of error and integrate relevant data (e.g., voter registration numbers, early voting patterns) into final our models to refine predictions, particularly in aforementioned battleground states.
+
+#2.6 Survey Example
+
+A complete example survey can be found here: https://forms.gle/tkFYQruLWuwCMLAm9
+
+The questions provided are:
+Are you currently a registered voter?
+What is the current state you are registered to vote in?
+How would you describe your political leanings?
+Indicate your age in years
+Indicate your sex
+What is your highest level of educational attainment?
+What was your 2023 taxable income amount? (can prefer not to say)
+If the general election were held tomorrow, what party would you vote for?
+How Likely are you to vote in this election?
+If you voted in the 2020 general election, who did you vote for?
+How well do you feel your most preferred candidate's policies address your concerns and most important issues as a voter
+What are your most top 3 most important issues when deciding who to vote for?
+How confident are you in the outcome of this 2024 election?
+
 
 
 # Additional data details
@@ -183,57 +274,6 @@ Lorem Ipsum
 # Model details {#sec-model-details}
 
 ## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-plot(first_model, "trace")
-
-plot(first_model, "rhat")
-```
-
-
-
-\newpage
-
 
 # References
 
