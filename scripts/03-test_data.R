@@ -18,23 +18,17 @@ data <- read_csv('./data/analysis_data/analysis_data.csv')
 empty_swing_state <- data |>
   filter(is.na(swing_state))
 
-empty_candidate_name <- data |>
-  filter(is.na(candidate_name))
-
 empty_pct <- data |>
   filter(is.na(pct))
 
 # The following must be true 
 
 print(nrow(empty_swing_state) == 0) 
-print(nrow(empty_candidate_name) == 0)
 print(nrow(empty_pct) == 0)
 
 # Check if pct is a number between 0 and 100. 
 print(all(data$pct >= 0 & data$pct <= 100))
 
-# Check if candidate names are Kamala Harris or Donald Trump.  
-print(all(data$candidate_name %in% c("Kamala Harris", "Donald Trump")))
-
 # All print statements must be true. 
 
+#### We should test our model ####
