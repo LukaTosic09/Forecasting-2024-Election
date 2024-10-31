@@ -1,44 +1,44 @@
 #### Preamble ####
-# Purpose: Cleans the raw plane data recorded by two observers..... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 6 April 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Clean election data from FiveThirtyEight for the 2024 election.
+# Author: Tara Chakkithara
+# Date: October 29 2024
+# Contact: tara.chakkithara@icloud.com
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
 
-#### Workspace setup ####
+
+### Required Packages ###
 library(tidyverse)
 
-#### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+# read data 
+data <- read_csv('./data/raw_data/president_polls.csv')
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
-  mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+# For our analysis we will only be looking at swing states.
+swing_states <- c("Pennsylvania", "Nevada", "North Carolina", "Wisconsin",
+                  "Michigan", "Georgia", "Arizona")
+data <- data |>
+  filter(state %in% swing_states) |>
+  filter(candidate_name == "Donald Trump") |>
+  rename(swing_state = state)
 
-#### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+# To ensure that we are looking at high quality polls we can filter out polls with 
+# a pollscore greater than 0. Lets choose to look at non hypothetical scenarios 
+# and filter out data before Biden dropped out of the presidential election. 
+
+biden_drop_date <- as.Date("2024-07-21")
+data <- data |>
+  filter(hypothetical == FALSE) |>
+  filter(pollscore < 0) |>
+  mutate(start_date = as.Date(sub("(..)$", "20\\1", start_date), format = "%m/%d/%Y")) |>
+  filter(start_date > biden_drop_date)
+  
+# Finally we can just look at the variables swing state, and pct
+# for our analysis. 
+
+data <- data |>
+  select(swing_state, pct)
+
+# save cleaned data for analysis in data/analysis_data
+write_csv(data, './data/analysis_data/analysis_data.csv')
+  
+
+
