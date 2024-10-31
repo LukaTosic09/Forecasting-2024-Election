@@ -30,5 +30,3 @@ print(nrow(empty_pct) == 0)
 print(all(data$pct >= 0 & data$pct <= 100))
 
 # All print statements must be true. 
-
-#### We should test our model ####
