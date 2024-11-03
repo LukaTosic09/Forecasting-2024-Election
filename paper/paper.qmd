@@ -1,15 +1,14 @@
 ---
 title: "The Coin Flip Effect"
-subtitle: "How Swing States Create Election Outcomes That Resemble The Likelihood of a Coin Flip"
+subtitle: "How Swing States Transform Elections Into Games of Chance"
 author: 
   - Tara Chakkithara
   - Sakura Hu
   - Luka Tosic
-  - Tara Chakkithara
 thanks: "Code and data are available at: https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
-abstract: "This paper employs the poll of polls method to develop a bayesian hierarcical model to predict the outcome of the 2024 US general election. Our analysis, based on polling data up to October 19, 20204, indicates that Kamala Harris is predicted to win the election. Modeling election outcomes in the United States poses challenges due to the complexities of the electoral college system, this study specifically focuses on the electoral college vote rather than the popular vote."
+abstract: "This paper uses the poll of polls method to develop a bayesian hierarcical model to predict the outcome of the 2024 U.S. election. Based on polling data collected up to October 19, 2024, our analysis forecasts that Kamala Harris is likely to win the election. Given the complexities of the electoral college system, this study specifically focuses on predicting the electoral college vote rather than the popular vote."
 format: pdf
 number-sections: true
 bibliography: references.bib
