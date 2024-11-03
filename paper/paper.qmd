@@ -4,6 +4,7 @@ subtitle: "Analyzing pollster data"
 author: 
   - Sakura Hu
   - Luka Tosic
+  - Tara Chakkithara
 thanks: "Code and data are available at: https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
@@ -34,21 +35,41 @@ library(splines)
 
 You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
 
-The US presidental election ...
+
+The United States has been the World's pinnacle of Hegemonic power for the last eighty to one hundered years, a nation-state powerful enough to exert its economic and military power as well as its societal and cultural influence on virtually all corners of the Globe. As much as many of our fellow Non-Americans loathe to hear it, the politics of the United States matter to people globally because their effect is felt globally. American citizens on the other hand have understand immediately the importance of the general election in influencing the direction their nation takes. 
+
+The domestic political situation has escalated in the US for years, with higher rates of homelessness and income inequality being major points of concern. Moreover, alt right movements continue to gather steam targeting women's rights, minority rights and immigration. The current Democrat administration continues to be lambasted for its adherence to maintaining the status quo, with many openly protesting against the US's relationship with Israel and foreign involvement generally. We have also seen demonstration against the stripping away of reproductive rights, and against police brutality contrasted by anti-immigration marches.
+
+The primary candidates in this election are the Democrat's Kamala Harris, and the Republican's Donald Trump. The estimand we will be using is a probability distribution of Trump's win percentage, which of course would inform Harris's in turn. Our estimate of this estimate will be found by analyzing the previous two elections, 2016's Clinton vs Trump and 2020's Trump vs Biden, as well as current polling data to make a prediction on either candidate's election rate and thus the winner of the election. Said estimate will allow us to make a prediction on who we think is likelier to win the election.
+
+An important aspect of all elections, but particularly this one owing to the current volatile and unpredictable political climate, is the notion of so called "Swing" or "Battleground" states. In a presidential election, each state is awarded a number of electoral votes based on the state's total representation in congress, or more simply, its size. There are a total of 538 electoral votes, and a candidate needs 270 to secure a majority and the election. Some states have no consistent voting pattern over elections, these are the aforementioned swing states. We will focus our analysis on swing states in order to make an informed prediction about them and the election as a whole.
+
+In particular, we used Bayesian updating and Monte Carlo Simulations of the election to model the results. We found this method of modeling was more effective than something like a Generalized Linear Model due to the nature of the variables found in the dataset. More information about the shape of the data is found in the data section, but in short we did not think that most of the variables present were capable creating a GLM that would accurately predict the results as none of the variables reasonably predict the hypothetical response of vote percentage based on our exploratory data analysis.
+
+Our high level results are ...
+
+This is important because ...
 
 
-#Estimand
-
-Lorem Ipsum # lorem ipsum is just a placeholder in case it's unfamiliar
-
+*include estimand
 
 # Data {#sec-data}
 
-Our data is the Project 538 Presidential General Election polls dataset (current cycle) from October 17th. It contains roughly 16000 observations of polls with __ unique polls with unque poll id from __ pollsters with unique pollster id. The methodology of each poll was as an online panel, an app panel, a live phone call, ... , and/or a probability panel. Each poll has been given an associated pollscore, numeric grade and transparency score. We also know the duration of the poll by start and end date, as well as the time of publication and the number of particpants. The candidate sponsoring each poll is given as well as the candidate endorsed by each poll. Of course, each poll has a predicted outcome which is captured in the data by the 
+# Data Overview (missing graphs and tables)
 
-Each poll has an associated pollster, and each pollster is assigned a numeric grade (0.5 to 3.0) and pollscore (-1 to 1) corresponding to the quality and reliability of the pollster and a transparency score (0 to 10) corresponding to the level of transparency the pollster provides in regards to their methodology. Furthemore, each poll has an associated methodology.
+Our data is the Project 538 [cite] Presidential General Election polls dataset (current cycle) from October 17th. The data contains roughly 16000 observations of polls taken from January 2023 at the earliest to October 16th at the latest. Each poll has been given an associated pollscore, numeric grade and transparency score, and the methodology used to conduct it is also given. We also know the duration of the poll by start and end date, as well as the time of publication and the number of particpants. The candidate sponsoring each poll is given as well as the candidate endorsed by each poll. 
 
-Importantly for our modeling, ...
+(can be deleted)
+Each poll has an associated pollster, and each pollster is assigned a numeric grade (0.5 to 3.0) and pollscore (-1 to 1) corresponding to the quality and reliability of the pollster and a transparency score (0 to 10) corresponding to the level of transparency the pollster provides in regards to their methodology. Furthermore, each poll has an associated methodology. [graphics to include?, pollscore vs numeric_grade and numeric_grade vs transparency score can show strong linear relationship, providing justification to use one]
+
+Important to our modeling are the variables answer and pct, where answer indicates what candidate the poll predicts will receive the associated percentage (pct) of votes. Thus each poll is captured at least twice in the dataset, once for each polled candidate. The associated unique poll_id is a variable that then captures multiple observations of the same poll. Another important variable is Hypothetical, which notes whether a poll is between candidates that ran against each other in reality, or in a hypothetical scenario. Another important variable for our modeling is state, which indicates which state, if any, the poll was focused. [pct by state for both candidates can show that swing states are less clear]
+
+# Data Cleaning
+
+To clean this data, we first filtered out all hypothetical polls. Then, we filtered out any polls not focused on swing states. Next,  we looked only at polls answering a percentage of Trump as he appeared in the last two presidential races, and we removed all data from from before Biden dropped out to get results for Trump vs Harris. 
+
+Next, we wanted to focus only on high quality polls, so we filtered out all polls with a pollscore greater than zero.
+
 
 
 ```{r}
@@ -116,11 +137,6 @@ test_model
 ```
 
 Talk way more about it. 
-
-
-# Measurement
-
-Lorem Ipsum
 
 
 
@@ -231,7 +247,7 @@ The specifics of the stratification along the various strata will depend on fact
 
 # 2.2 Survey Method
 
-The survey method we will employ is an online panel of questions in the form of a Google form. These forms are secure and anonymous, and provide a simple way to store the results we receive. Additionally, the format is low cost to produce and takes no additional labour to maintain unless issues arise, in contrast with a live phone that must be either directly manned or monitored. Another advantage is the transparency provided, users can read and reread instructions, and return to questions they are unsure of easily. Keeping the form short, up to 15 minutes can help stave of disengagement from possible participants.
+The survey method we will employ is an online panel of questions in the form of a Google form. These forms are secure and anonymous, and provide a simple way to store the results we receive. Additionally, the format is low cost to produce and takes no additional labour to maintain unless issues arise, in contrast with a live phone that must be either directly manned or monitored. Another advantage is the transparency provided, users can read and reread instructions, and return to questions they are unsure of easily. Keeping the form short, up to 15 minutes can help stave off disengagement from possible participants.
 
 The maintaining of the survey would take some paid labour. The survey would run for 1 to 2 weeks over the course of 3 months prior to the election as a way to collect data that captures shifting trends in public opinion. Doing this would require us to note when the survey was submitted.
 
@@ -239,13 +255,13 @@ The maintaining of the survey would take some paid labour. The survey would run 
 
 Distributing the survey will require multiple things. We must choose how we will distribute the survey. To keep people who are not registered voters from answering, there must be a way for participants to verify that they are registered voters. We propose they register with an email to receive the survey, and they would only receive the survey if their information matches a registered voter in the US, this system would have to be automated and not save sensitive information in order to maintain anonymity. Of course, we'd need to somehow access information on registered voters in the US. Such a system would of course take a portion of our budget to implement
 
-In order to incentivize participation, we could allocate part of the budget to providing a incentive of monetary value for participants. Something like a small giftcard or voucher that is guaranteed upon survey submission. 
+In order to incentivize participation, we could allocate part of the budget to providing an incentive of monetary value for participants. Something like a small giftcard or voucher that is guaranteed upon survey submission. 
 
-To reach potential participants, a campaign to send advertise the survey would be launched. We could pay businesses to send a promotional email to users of their service, particularly of services used by demographics we are trying to account for in our strata. A powerful tool for advertising this survey would social media, especially since in the modern day, social media are used by a very wide range of people from the most partisan Republicans and Democrats to the median individual. We can advertise physically as well, more so in states that we are hoping to account for per our stratification.
+To reach potential participants, a campaign to advertise the survey would be launched. We could pay businesses to send a promotional email to users of their service, particularly of services used by demographics we are trying to account for in our strata. A powerful tool for advertising this survey would be social media, especially since in the modern day, social media are used by a very wide range of people from the most partisan Republicans and Democrats to the median individual. We can advertise physically as well, more so in the states that we are hoping to account for per our stratification.
 
 # 2.4 Data Validation
 
-Once the data is collected, it would have to be parsed and cleaned. We would want to know how many questions were unanswered, and to produce basic summary statistics on things like the demographics and state of participants in order to gain an initial understanding of our data. Doing this while the survey is running can tell us if we need to  push it further in certain parts of the nation or to certain groups with the hope of amassing more responses in those categories.
+Once the data is collected, it would have to be parsed and cleaned. We would want to know how many questions were unanswered, and to produce basic summary statistics on things like the demographics and state of participants in order to gain an initial understanding of our data. Doing this while the survey is running can tell us if we need to push it further in certain parts of the nation or to certain groups with the hope of amassing more responses in those categories.
 
 As survey cycles continue, we would clean the data to remove non-sensical or uninterpretable responses as well as automated or repeated responses.
 
@@ -255,7 +271,7 @@ The next part of validation is applying stratification weights to ensure our dat
 
 We would aggregate weekly poll results, adjusting for recent responses with higher weights []. Next we would employ Bayesian updating as in our paper to forecast trends based on historical election and polling data, which accounts for typical shifts and volatility in key regions. 
 
-We would also have to account for a margin of error and integrate relevant data (e.g., voter registration numbers, early voting patterns) into final our models to refine predictions, particularly in aforementioned battleground states.
+We would also have to account for a margin of error and integrate relevant data (e.g., voter registration numbers, early voting patterns) into final our models to refine predictions, particularly in the aforementioned battleground states.
 
 # 2.6 Survey Example
 
