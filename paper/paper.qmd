@@ -1,14 +1,15 @@
 ---
-title: "Forecasting the 2024 US General Election"
-subtitle: "Analyzing pollster data"
+title: "The Coin Flip Effect"
+subtitle: "How Swing States Create Election Outcomes That Resemble The Likelihood of a Coin Flip"
 author: 
+  - Tara Chakkithara
   - Sakura Hu
   - Luka Tosic
   - Tara Chakkithara
 thanks: "Code and data are available at: https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
-abstract: "This paper uses the poll of polls method to create a general linear model to predict the outcome of the 2024 US general election.We find that current polling predicts ______ as the winner of the election. Third sentence. A limitation of the model is that it does not account for the electoral college in predicting the result, and is thus based only on the popular vote."
+abstract: "This paper employs the poll of polls method to develop a bayesian hierarcical model to predict the outcome of the 2024 US general election. Our analysis, based on polling data up to October 19, 20204, indicates that Kamala Harris is predicted to win the election. Modeling election outcomes in the United States poses challenges due to the complexities of the electoral college system, this study specifically focuses on the electoral college vote rather than the popular vote."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -141,68 +142,135 @@ Talk way more about it.
 
 
 # Model
+## Model Justification
+The unique structure of the electoral college voting system in the United States makes it unlikely for any candidate other than Donald Trump or Kamala Harris to be competitive in the 2024 presidential election. Given Trump's historical performance in previous campaigns, particularly the 2016 election, it is more insightful to model his election outcomes. To achieve this, we have decided to create a Bayesian Hierarchical Model.
 
-The goal of our modelling strategy is twofold. Firstly,...
+Our goal is to model the probability distribution of the proportion of electoral college seats that Donald Trump may secure, utilizing @citeR. The 2024 election closely resembles the 2016 election, which Donald Trump won, and he is facing a female opponent again. To capture our initial beliefs about the election being competitive, with Trump holding a slight advantage, we have selected a weak prior of Beta(4,3). This prior distribution is characterized by a mode that aligns closely with Trump’s previous percentage of electoral seats allocated in 2016. The Beta distribution is particularly effective in Bayesian modeling due to its ease of updating with new data.
 
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
+To refine our prior and incorporate more recent data, we will focus on the election outcomes from key swing states. The swing states for the 2024 general election are: Nevada, Arizona, Wisconsin, Michigan, Pennsylvania, North Carolina, and Georgia. Model validation and additional details are found in [Appendix -@sec-model-details].
 
-## Model set-up
+## Model Set Up 
 
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
+Let $X$ be the random variable: proportion of electoral college seats Donald Trump will win. 
 
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
+$$
+X \sim \text{Beta}(4, 3)
+$$ 
 
 
-### Model justification
+For each swing state $j$, let $Y_{j, 1}, Y_{j, 2}, Y_{j, 3}, ..., Y_{j, n_j}$ be independent and identically distributed (i.i.d) random variables, where $1 \leq j \leq 7$ and  $Y_{j, i}$ represents the percentage of votes for Donald Trump in state $j$. $F_{j}$ is some unknown probability distribution of voting percentages of state $j$.
 
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
+$$
+Y_{j, i} \sim F_{j}(x) \quad \text{for } j = 1, 2, \ldots, 7 \text{ and } i = 1, 2, \ldots, n_j
+$$
 
-We can use maths by including latex between dollar signs, for instance $\theta$.
+We can use Kernel Density Estimation to estimate $F_j$.
+
+$$
+\hat{F}_{j}(x) = \frac{1}{n} \sum_{i=1}^{n_j} K_h(x - Y_{j, i})
+$$
+
+Where $K_h$ is the gaussian kernel with bandwidth $h = n_j − \frac{1}{5} n_j^{-\frac{1}{5}}\frac{n_j - 1}{5}$. 
+Let $\hat Z_{1}, \hat Z_{2}, ..., \hat Z_{7}$ be simulated values drawn from $\hat F_{1}, \hat F_{2}, ..., \hat F_{7}$ respectively. Let $M_{j}$ be the election outcome of the state (win or lose). $M_{j}$ can be modeled using a binomial distribution where $n_j$ is the number of polls. 
+
+$$
+M_{j} \sim \text{Binomial}(n_j, \hat Z_{j})
+$$
+
+We can now simulate an election and create an estimator for $X$, the random variable representing the proportion of electoral seats Donald Trump will hold after the election. We start by allocating Trump all the seats of prodominatly red states which are 219 seats. We then add additional seats for each swing state before diving by the total number of seats to estimate the proportion of seats Trump will win. Here, $s_j$ is the number of electoral college seats in state $j$. 
+$$
+\hat X = \frac{(s_1)\hat M_{1} + (s_2)\hat M_{2} + \ldots + (s_7)\hat M_{7} + 219}{538} 
+$$
+
+Using monte carlo simulation we can generate 10,000 estimates $\hat X$. We apply a learning rate of 0.01 to avoid overfitting and update our prior. 
+
+$$
+X \sim Beta(4 + W, 3 + L)
+$$
+
+Where W is the number of estimates greater than 0.5 multiplied by the learning rate of 0.01, and L is the number of estimates less than or equal to 0.5 multiplied by the same learning rate of 0.01. 
+
+## Model Assumptions & Limitations
+
+Our model relies on polling data collected after Joe Biden, the former primary candidate for the Democratic Party, withdrew from the race. While this data is recent, it does not account for any shifts in voter sentiment that may have occurred between October 19, 2024, and November 5, 2024.
+
+In today’s highly polarized political climate, there is an increased likelihood that voters may not respond honestly in polls. This lack of transparency can lead to significant data distortions, ultimately compromising the accuracy of predictions.
+
+Additionally, the model’s simplicity poses a limitation, as it does not consider various critical factors that can influence electoral outcomes. Economic conditions, social dynamics, and demographic shifts are all significant elements that can impact voter behavior but are not incorporated into the model.
+
+This model designed specifically for the context of United States elections. It is built on assumptions inherent to the electoral college system, such as the presence of two dominant candidates and a winner-takes-all allocation of electoral seats. As a result, the insights derived from this model may not be easily generalizable to elections in different countries or political contexts.
 
 
 # Results
-
-Our results are summarized in @tbl-modelresults.
 
 ```{r}
 #| echo: false
 #| eval: true
 #| warning: false
 #| message: false
+library(tidyverse)
+library(scales)
 
-library(rstanarm)
+model <- readRDS(file = here::here("models/model.rds"))
+data <- model$plot_data
+prior <- model$prior
+updated <- model$updated
 
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
+lower_bound <- qbeta(0.025, updated$alpha, updated$beta)
+upper_bound <- qbeta(0.975, updated$alpha, updated$beta)
+
+mode_prior <- data$x[which.max(data$density[data$type == "Prior"])]
+mode_updated <- data$x[which.max(data$density[data$type == "Updated"])]
+
+ggplot(data, aes(x = x, y = density, color = type)) +
+    geom_line(size = 1) + 
+    labs(title = "Probability Distribution of Donald Trump's Electoral College Seat Percentage",
+         x = "Proportion",
+         y = "Density") +
+    theme_minimal(base_size = 10) + 
+    scale_color_manual(values = c("forestgreen", "purple")) + 
+    theme(
+        plot.title = element_text(hjust = 0.5, size = 10),
+        legend.title = element_blank(), 
+        legend.position = "top",
+        panel.grid.major = element_line(color = "grey80"),  
+        panel.grid.minor = element_blank(),
+        axis.ticks = element_line(color = "black"), 
+        axis.ticks.length = unit(0.25, "cm"),
+        axis.title.x = element_text(margin = margin(t = 10)), 
+        axis.title.y = element_text(margin = margin(r = 10))  
+    ) +
+
+    geom_ribbon(data = filter(data, type == "Prior"), 
+                aes(ymin = 0, ymax = density), 
+                fill = "forestgreen", alpha = 0.1) +  
+    geom_ribbon(data = filter(data, type == "Updated"), 
+                aes(ymin = 0, ymax = density), 
+                fill = "purple", alpha = 0.1) + 
+    geom_segment(aes(x = mode_prior, xend = mode_prior, y = 0, 
+                     yend = max(data$density[data$type == "Prior"]) * 0.8),
+                 linetype = "dashed", color = "forestgreen", size = 1) +
+    geom_segment(aes(x = mode_updated, xend = mode_updated, y = 0, 
+                     yend = max(data$density[data$type == "Updated"]) * 0.8),
+                 linetype = "dashed", color = "purple", size = 1) +
+    scale_x_continuous(breaks = c(0, 0.23, 0.44, 0.5, 0.6, 0.68, 0.75, 1), 
+                       labels = function(x) sprintf("%.2f", x)) + 
+    geom_vline(xintercept = lower_bound, linetype = "dotted", color = "purple") +
+    geom_vline(xintercept = upper_bound, linetype = "dotted", color = "purple") +
+    annotate("text", x = lower_bound, y = max(data$density[data$type == "Updated"]) * 0.85,
+             label = "",
+             color = "purple", vjust = -1) +
+    annotate("text", x = upper_bound, y = max(data$density[data$type == "Updated"]) * 0.85,
+             label = "",
+             color = "purple", vjust = -1)
+
 ```
 
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Lorem Ipsum"
-#| warning: false
+The updated probability distribution for Donald Trump's electoral college seat percentage is modeled as Beta(7.67,9.33). This distribution has a mode of approximately 0.44, indicating that the most likely outcome is that Trump would secure around 44% of the electoral college seats. This suggests that Kamala Harris is favored to win the overall election.
 
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
+However, it’s crucial to emphasize that we cannot confidently assert that Kamala Harris will win with 95% certainty. The shape of the probability distribution is similar to that of a coin flip, reflecting significant uncertainty in electoral outcomes. While Harris may have a higher likelihood of winning, there remains a considerable chance for Trump to secure a majority of the seats.
 
-
-
+To quantify Trump’s chances of victory, we evaluated the cumulative distribution function (CDF) of the Beta distribution at the 50% threshold, which corresponds to the majority of electoral college seats. By subtracting this CDF value from 1, we calculated the probability of Trump winning the election. The result of this analysis indicates that Trump has a 35% probability of securing victory.
 
 # Discussion
 
@@ -298,7 +366,11 @@ How confident are you in the outcome of this 2024 election?
 
 # Model details {#sec-model-details}
 
+
+
+
 ## Posterior predictive check
+
 
 # References
 
