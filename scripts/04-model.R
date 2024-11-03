@@ -91,6 +91,7 @@ update_beta_prior <- function(prior_alpha, prior_beta, data, num_simulations){
   saveRDS(result, './models/model.rds')
 }
 
-# since Donald Trump is running against a woman again 
-# our prior mode is based on 2016 election results. run 10000 simulated elections. 
+# since Donald Trump is running against a woman again.
+# our prior mode is based on 2016 election results.
+# run 10000 simulated elections. 
 update_beta_prior(4, 3, data, 10000)
