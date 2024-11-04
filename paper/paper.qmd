@@ -1,5 +1,6 @@
 ---
-title: "The Influence of Swing States on Election Outcomes"
+title: "Forecasting the 2024 US General Election"
+subtitle: "Analyzing the influence state on election outcome by using 538 Pollster Data with Bayesian hierarchical model, Predicting Harris Victory[need more details in result]
 author: 
   - Tara Chakkithara
   - Sakura Hu
@@ -7,7 +8,7 @@ author:
 thanks: "Code and data are available at: https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
-abstract: "This paper employs a Bayesian hierarchical model to forecast the outcome of the 2024 U.S. election. Based on polling data collected from July 21 to October 19, 2024, our analysis indicates that Kamala Harris is the candidate most likely to win. Given the complexities of the Electoral College voting system and significant political polarization, election outcomes appear very close this year. This paper aims to quantify this closeness and provide insights into voter behavior."
+abstract: "This paper forecasts the outcome of the 2024 U.S. general election. Using the poll of polls approach, a generalized linear model was developed with data from FiveThirtyEight [more spcific on method, and what is the date cutoff of the data]  The model's prediction is based on the popular vote in the seven key swing states—Arizona, Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North Carolina to estimate the overall winner. Results indicate that Harris is predicted to win, by [how much? need to be more spcific on the result]. This suggests that current polling trends may provide reliable insights into the likely election result, though future shifts in voter sentiment could impact the final outcome."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -35,32 +36,23 @@ library(readr)
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+The 2024 United States presidential election, the 60th quadrennial election, is scheduled for November 5, 2024. The stakes are high, as the outcome will shape domestic policies and impact international relations, with effects on trade, climate change, and security. In recent years, the domestic political landscape has changed significantly, marked by rising homelessness, income inequality, and social unrest. Alt-right movements increasingly target women's rights, minority rights, and immigration policies, leading to deep societal divisions. The current Democratic administration faces criticism for not addressing these pressing issues, with widespread protests against U.S. foreign involvement and the erosion of reproductive rights. Protests around police brutality and anti-immigration sentiments have also surfaced, reflecting the polarized nature of contemporary American society.
 
+The primary candidates in this election, Democratic incumbent Kamala Harris and former Republican president Donald Trump, are expected to engage in a tight race, with polling indicating that the results could be very close. Swing states—those that do not consistently vote for one party—are vital in determining the overall outcome, as their electoral votes can sway the final result. Seven important swing states—Arizona, Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North Carolina—are expected to be battlegrounds in this election, making their polling data essential for accurate forecasts.
 
-The United States has been the World's pinnacle of Hegemonic power for the last eighty to one hundered years, a nation-state powerful enough to exert its economic and military power as well as its societal and cultural influence on virtually all corners of the Globe. As much as many of our fellow Non-Americans loathe to hear it, the politics of the United States matter to people globally because their effect is felt globally. American citizens on the other hand have understand immediately the importance of the general election in influencing the direction their nation takes. 
+This paper focuses on forecasting the election outcome by employing the "poll of polls" method, utilizing data from FiveThirtyEight, along with historical data from the 2016 Clinton vs. Trump election and the 2020 Trump vs. Biden election. A Bayesian updating and Monte Carlo Simulations is created to predict the winner of the election outcome based on the popular vote across these swing states[some more details for what was done?]. The primary estimand in this analysis is the probability distribution of Harris's win percentage, derived from current polling data and historical election results. The model predicted that Harris will win, and [add details to result]
 
-The domestic political situation has escalated in the US for years, with higher rates of homelessness and income inequality being major points of concern. Moreover, alt right movements continue to gather steam targeting women's rights, minority rights and immigration. The current Democrat administration continues to be lambasted for its adherence to maintaining the status quo, with many openly protesting against the US's relationship with Israel and foreign involvement generally. We have also seen demonstration against the stripping away of reproductive rights, and against police brutality contrasted by anti-immigration marches.
+Accurate forecasting of election outcomes is vital for several reasons. It enhances democratic engagement by informing voters about potential results, which encourages active participation in the electoral process. Furthermore, political campaigns can leverage these forecasts to tailor their strategies, optimize resource allocation, and concentrate efforts on pivotal swing states that may determine the election's outcome. Analyzing polling data also reveals trends in voter sentiment, providing valuable insights into the electorate's priorities and concerns that can inform policy discussions. Ultimately, the findings from this study can improve the accuracy of predictions in a political landscape characterized by rapid change and polarization, thereby enhancing the relevance and reliability of electoral analyses.
 
-The primary candidates in this election are the Democrat's Kamala Harris, and the Republican's Donald Trump. The estimand we will be using is a probability distribution of Trump's win percentage, which of course would inform Harris's in turn. Our estimate of this estimate will be found by analyzing the previous two elections, 2016's Clinton vs Trump and 2020's Trump vs Biden, as well as current polling data to make a prediction on either candidate's election rate and thus the winner of the election. Said estimate will allow us to make a prediction on who we think is likelier to win the election.
+The remainder of this paper is structured as follows: .......
 
-An important aspect of all elections, but particularly this one owing to the current volatile and unpredictable political climate, is the notion of so called "Swing" or "Battleground" states. In a presidential election, each state is awarded a number of electoral votes based on the state's total representation in congress, or more simply, its size. There are a total of 538 electoral votes, and a candidate needs 270 to secure a majority and the election. Some states have no consistent voting pattern over elections, these are the aforementioned swing states. We will focus our analysis on swing states in order to make an informed prediction about them and the election as a whole.
-
-In particular, we used Bayesian updating and Monte Carlo Simulations of the election to model the results. We found this method of modeling was more effective than something like a Generalized Linear Model due to the nature of the variables found in the dataset. More information about the shape of the data is found in the data section, but in short we did not think that most of the variables present were capable creating a GLM that would accurately predict the results as none of the variables reasonably predict the hypothetical response of vote percentage based on our exploratory data analysis.
-
-Our high level results are ...
-
-This is important because ...
-
-
-*include estimand
 
 # Data {#sec-data}
-## Data Acquisition
+## Data Acquisition {#sec-data-overview}
 Data for this paper is sourced from the Project 538 Presidential General Election polls dataset @cite538. This dataset includes approximately 16,000 observations of polls conducted from January 2023 to October 16, 2024.
 Each poll in the dataset has an associated pollscore, sample size, start date, pct (percentage of votes), candidate name, and state. There are other features include time of publication, candidate sponsorship, etc, however for this analysis we will focus on the key veriables highlighted.  
 
-## Dataset Features
+## Dataset Features {#sec-Dataset-Features}
 ### Pollscore
 
 ```{r}
