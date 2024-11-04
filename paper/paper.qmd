@@ -598,8 +598,6 @@ ggplot(density_data, aes(x = x, y = density, color = label)) +
   )
 ```
 
-## Posterior Predictive Check
-
 # References
 
 
