@@ -276,6 +276,8 @@ ggplot(data = merged_data2) +
 \pagebreak
 #### Poll End Date
 
+The timing of a poll is very important to it's accuracy as voter sentiment can change a lot with things such as scandals, new economic conditions, natural disasters, etc. To build our model we need to use relevant recent data as well as make sure that there's is enough data to analyze. @fig-end-date shows trends in national voter PCT across time after Joe Biden dropped out of the race. 
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -315,19 +317,6 @@ ggplot(data = wide_data, aes(x = end_date)) +
     legend.position = "top"
   )
 ```
-
-
-Our data is the Project 538 [cite] Presidential General Election polls dataset (current cycle) from October 17th. The data contains roughly 16000 observations of polls taken from January 2023 at the earliest to October 16th at the latest. Each poll has been given an associated pollscore, numeric grade and transparency score, and the methodology used to conduct it is also given. We also know the duration of the poll by start and end date, as well as the time of publication and the number of particpants. The candidate sponsoring each poll is given as well as the candidate endorsed by each poll. 
-
-(can be deleted)
-Each poll has an associated pollster, and each pollster is assigned a numeric grade (0.5 to 3.0) and pollscore (-1 to 1) corresponding to the quality and reliability of the pollster and a transparency score (0 to 10) corresponding to the level of transparency the pollster provides in regards to their methodology. Furthermore, each poll has an associated methodology. [graphics to include?, pollscore vs numeric_grade and numeric_grade vs transparency score can show strong linear relationship, providing justification to use one]
-
-Important to our modeling are the variables answer and pct, where answer indicates what candidate the poll predicts will receive the associated percentage (pct) of votes. Thus each poll is captured at least twice in the dataset, once for each polled candidate. The associated unique poll_id is a variable that then captures multiple observations of the same poll. Another important variable is Hypothetical, which notes whether a poll is between candidates that ran against each other in reality, or in a hypothetical scenario. Another important variable for our modeling is state, which indicates which state, if any, the poll was focused. [pct by state for both candidates can show that swing states are less clear]
-
-
-To clean this data, we first filtered out all hypothetical polls. Then, we filtered out any polls not focused on swing states. Next,  we looked only at polls answering a percentage of Trump as he appeared in the last two presidential races, and we removed all data from from before Biden dropped out to get results for Trump vs Harris. 
-
-Next, we wanted to focus only on high quality polls, so we filtered out all polls with a pollscore greater than zero.
 
 ## Data Cleaning
 
