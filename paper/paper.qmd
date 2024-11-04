@@ -49,24 +49,26 @@ The remainder of this paper is structured as follows: .......
 
 # Data {#sec-data}
 ## Data Acquisition {#sec-data-overview}
-Data for this paper is sourced from the Project 538 Presidential General Election polls dataset @cite538. This dataset includes approximately 16,000 observations of polls conducted from January 2023 to October 16, 2024.
-Each poll in the dataset has an associated pollscore, sample size, start date, pct (percentage of votes), candidate name, and state. There are other features include time of publication, candidate sponsorship, etc, however for this analysis we will focus on the key veriables highlighted.  
+Data for this paper is sourced from the Presidential General Election polls dataset, @cite538. This dataset includes approximately 16,000 observations of polls conducted from January 2023 to October 16, 2024.
+Each poll in the dataset has an associated pollscore, sample size, start date and end data, pct (percentage of votes), candidate name, and state. There are other features in the dataset such as time of publication, candidate sponsorship, etc. For this analysis, we will focus on the key veriables mentioned above.  
 
 ## Dataset Features {#sec-Dataset-Features}
 ### Pollscore
+The pollscore feature serves as a metric for evaluating the quality of a poll. It is a mesaurement that tries to quantify the realiablity of a poll. It is calculated based on factors such as poll transparency, bias, and error, @citeABC. A more negative pollscore indicates higher quality, reflecting a greater confidence in the poll's accuracy. As seen in @fig-pollscore, most polls collected by FiveThirtyEight have a pollscore under 0. In @fig-transparency, we see that lower poll scores are correlated with high transparency. 
 
-```{r}
+```{r, fig.width=5, fig.height=2.5}
 #| warning: false
 #| message: false
 #| echo: false
-
+#| label: fig-pollscore
+#| fig-cap: "Distribution of Pollscores in the 2024 General US Election"
 election_data <- read.csv("../data/raw_data/president_polls.csv")
 
 real_data <- election_data %>% select(pollscore)
 
 ggplot(real_data, aes(x = pollscore)) +
   geom_density(fill = "#4B8BBE", alpha = 0.6) + 
-  labs(title = "Pollscore Distribution",
+  labs(title = "",
        x = "Pollscore",
        y = "Density") +
   theme_minimal() + 
@@ -77,13 +79,13 @@ ggplot(real_data, aes(x = pollscore)) +
   )
 ```
 
-### Sample Size
 
-```{r}
+```{r, fig.width=5, fig.height=2.5}
 #| echo: false
 #| warning: false
 #| message: false
-
+#| label: fig-transparency
+#| fig-cap: "Average Transparency Scores Across Varying Pollscores"
 data <- read_csv('../data/raw_data/president_polls.csv')
 
 data <- data |>
@@ -99,7 +101,7 @@ ggplot(data, aes(x = pollscore, y = avg_transparency_score)) +
   labs(
     x = 'Pollscore',
     y = 'Average Transparency Score',
-    title = 'Average Transparency Score by Pollscore'
+    title = ''
   ) +
   theme_bw() +
   theme(
@@ -112,6 +114,7 @@ ggplot(data, aes(x = pollscore, y = avg_transparency_score)) +
 ```
 
 
+### Sample Size
 ```{r}
 #| echo: false
 #| warning: false
