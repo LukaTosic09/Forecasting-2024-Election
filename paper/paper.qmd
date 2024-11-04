@@ -114,9 +114,7 @@ ggplot(data, aes(x = pollscore, y = avg_transparency_score)) +
 
 
 ### Sample Size
-The sample size of a poll is the number of people who participated in the poll. Generally, a larger sample size is seen as a better representation of the population. The most common sample size of polls is around 1250, as seen in @fig-sample-size. Although this may seem like a small amount, sample sizes greater than 1004 people have a margin of error less than 3 percent @citeScientificAmerican. Standard political polls usually aim to include more than 1000 people. This is a good indicator that most of the polls in our data follow the accepted pratices of polling. 
-
-The sample size of a poll refers to the number of individuals who participate in the survey. Generally, a larger sample size is considered to provide a more accurate representation of the overall population. For instance, a common sample size for polls is greater than 1000. While this might seem like a relatively small number, studies have shown that sample sizes exceeding 1,004 can achieve a margin of error of less than 3 percent (Scientific American). Sample sizes in our dataset have a mode of 1250, as seen in @fig-sample-size, which suggests that most of the polls in the dataset adhere to accepted polling practices when it comes to sample size. This commitment to robust sample sizes enhances the reliability of the polling data we analyze.
+The sample size of a poll refers to the number of individuals who participated in the poll. Generally, a larger sample size is considered to provide a more accurate representation of the overall population. For instance, a common sample size for polls is greater than 1000. While this might seem like a relatively small number, studies have shown that sample sizes exceeding 1,004 can achieve a margin of error less than 3 percent,  @citeScientificAmerican. Sample sizes in our dataset have a mode of 1250, as seen in @fig-sample-size, which suggests that most of the polls in the dataset adhere to accepted polling practices when it comes to sample size.
 
 ```{r}
 #| echo: false
