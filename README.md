@@ -1,7 +1,14 @@
-# How Swing States Influence The Overall Distribution of Electoral College Seats
+# Forecasting the 2024 US General Election
+## Analyzing the Impact of Swing States on Election Outcomes Using 538’s 2024 General Election Dataset
 
 ## Abstract
-This paper employs a Bayesian hierarchical model to forecast the outcome of the 2024 U.S. election. Based on polling data collected from July 21 to October 19, 2024, our analysis indicates that Kamala Harris is the candidate most likely to win with a 66% chance. Given the complexities of the Electoral College voting system and significant political polarization, election outcomes appear very close this year. This paper aims to quantify this closeness and provide insights into voter behavior.
+This paper forecasts the outcome of the 2024 U.S. general election. Using the
+poll of polls approach, a bayesian hierarchical model was developed with data
+from FiveThirtyEight using polling data from July 21 to October 19, 2024. The
+model’s prediction is based on the electoral college vote in the seven key swing
+states : Arizona, Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North
+Carolina to estimate the overall winner. Results indicate that Harris is predicted
+to win with a probaility of 66%.
 
 ## File Structure
 
