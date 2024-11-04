@@ -1,5 +1,4 @@
 # Forecasting the 2024 US General Election
-## Analyzing the Impact of Swing States on Election Outcomes Using 538’s 2024 General Election Dataset
 
 ## Abstract
 This paper forecasts the outcome of the 2024 U.S. general election. Using the
