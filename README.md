@@ -1,8 +1,7 @@
-# The Coin Flip Effect
-# How Swing States Transform Elections Into Games of Chance
+# How Swing States Influence The Overall Distribution of Electoral College Seats
 
 ## Abstract
-This paper uses the poll of polls method to develop a bayesian hierarchical model to forecast the outcome of the 2024 U.S. election. Based on polling data collected from July 21 to October 19, 2024, our analysis indicates that Kamala Harris is the candidate most likely to win the election. Given the complexities of the electoral college voting system and significant political polarization within the U.S, election outcomes appear very close this year. This paper aims to provide deeper insights into voter behaviour.
+This paper employs a Bayesian hierarchical model to forecast the outcome of the 2024 U.S. election. Based on polling data collected from July 21 to October 19, 2024, our analysis indicates that Kamala Harris is the candidate most likely to win with a 66% chance. Given the complexities of the Electoral College voting system and significant political polarization, election outcomes appear very close this year. This paper aims to quantify this closeness and provide insights into voter behavior.
 
 ## File Structure
 
@@ -17,13 +16,4 @@ The repo is structured as:
 
 
 ## Statement on LLM usage
-
-Aspects of the code were written with the help of the auto-complete tool, Codriver. The abstract and introduction were written with the help of ChatHorse and the entire chat history is available in inputs/llms/usage.txt.
-
-## Some checks
-
-- [ ] Change the rproj file name so that it's not starter_folder.Rproj
-- [ ] Change the README title so that it's not Starter folder
-- [ ] Remove files that you're not using
-- [ ] Update comments in R scripts
-- [ ] Remove this checklist
+No LLMs were used for this paper. 
