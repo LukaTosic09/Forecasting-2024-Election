@@ -31,5 +31,10 @@ data <- data.frame(
 )
 
 data$pct <- pmin(pmax(data$pct, 0), 100)
+data$pollscore <- runif(1000, -1.5, -0.4)
+data$candidata_name <- sample(c("Trump", "Harris"), 1000, replace = TRUE)
+data$sample_size <- sample(500:10000, 1000, replace = TRUE)
+data$end_date <- as.Date("2020-01-01") +
+ sample(0:(as.Date("2024-10-31") - as.Date("2020-01-01")), 1000, replace = TRUE)
 
 write_csv(data, './data/simulated_data/simulated_data.csv')
