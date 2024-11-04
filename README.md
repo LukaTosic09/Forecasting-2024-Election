@@ -1,4 +1,4 @@
-# Forecasting the 2024 US General Election
+# Forecasting the 2024 U.S. General Election
 
 ## Abstract
 This paper forecasts the outcome of the 2024 U.S. general election. Using the
