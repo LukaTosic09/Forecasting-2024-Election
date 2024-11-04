@@ -1,9 +1,8 @@
-# 2024 US Presidential Election Forecasting 
+# The Coin Flip Effect
+# How Swing States Transform Elections Into Games of Chance
 
-## Overview
-
-This repository contains the paper "The Coin Flip Effect: How Swing States Create Election Outcomes That Resemble The Likelihood of a Coin Flip" as well as the code and data used to create it. The paper was created by Sakura Hu, Luka Tosic, and Tara Chikkathara. The paper forecasts the winner of the 2024 US election by utilizing the Poll of Polls method and analyzing the outcome of a Bayesian Hierarchical model using FiveThirtyEight's October 17th, 2024 US Election Polling Data (current cycle)
-
+## Abstract
+This paper uses the poll of polls method to develop a bayesian hierarchical model to forecast the outcome of the 2024 U.S. election. Based on polling data collected from July 21 to October 19, 2024, our analysis indicates that Kamala Harris is the candidate most likely to win the election. Given the complexities of the electoral college voting system and significant political polarization within the U.S, election outcomes appear very close this year. This paper aims to provide deeper insights into voter behaviour.
 
 ## File Structure
 
@@ -19,5 +18,12 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-Aspects of the code were written with the help of the LLM ChatGPT. [] were written with the help of ChatGPT and the entire chat history is available in inputs/llms/usage.txt.
+Aspects of the code were written with the help of the auto-complete tool, Codriver. The abstract and introduction were written with the help of ChatHorse and the entire chat history is available in inputs/llms/usage.txt.
 
+## Some checks
+
+- [ ] Change the rproj file name so that it's not starter_folder.Rproj
+- [ ] Change the README title so that it's not Starter folder
+- [ ] Remove files that you're not using
+- [ ] Update comments in R scripts
+- [ ] Remove this checklist
