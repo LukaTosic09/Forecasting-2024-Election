@@ -39,12 +39,13 @@ library(readr)
 
 The 2024 United States presidential election, is scheduled for November 5, 2024. The stakes are high, as the outcome will shape domestic policies and impact international relations, with effects on trade, climate change, and security. In recent years, the domestic political landscape has changed significantly, marked by rising homelessness, income inequality, and social unrest. Alt-right movements increasingly target women's rights, minority rights, and immigration policies, leading to deep societal divisions. The current Democratic administration faces criticism for not addressing these pressing issues, with widespread protests against U.S. foreign involvement and the erosion of reproductive rights. Protests around police brutality and anti-immigration sentiments have also surfaced, reflecting the polarized nature of contemporary American society.
 
-The primary candidates in this election, Democratic vice president Kamala Harris and former Republican president Donald Trump, are expected to engage in a tight race, with polling indicating that the results could be very close. Swing states—those that do not consistently vote for one party—are vital in determining the overall outcome, as their electoral votes can sway the final result. This year's swing states are: Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North Carolina. They expected to be battlegrounds in this election, making their polling data essential for accurate forecasts.
+The primary candidates in this election, Democratic Vice President Kamala Harris and former Republican president Donald Trump, are expected to engage in a tight race, with polling indicating that the results could be very close. Swing states—those that do not consistently vote for one party—are vital in determining the overall outcome, as their electoral votes can sway the final result. This year's swing states are: Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North Carolina. They expected to be battlegrounds in this election, making their polling data essential for accurate forecasts.
 
 This paper focuses on forecasting election outcomes by employing the "poll of polls" method, utilizing data from FiveThirtyEight. A Bayesian hierarchical model and Monte Carlo Simulations have been used to predict the winner of the election based on the electoral college vote, and quantify how close the election actually is. The estimand in this analysis is the proportion of seats Donald Trump will win in the 2024 election. Using the estimand we can conclude election results. Assuming Donald Trump's loss is Kamala Harris' win, she has around a 66% chance of winning this election. 
 
 Accurate forecasting of election outcomes is vital for several reasons. It enhances democratic engagement by informing voters about potential results, which encourages active participation in the electoral process. Furthermore, political campaigns can leverage these forecasts to tailor their strategies, optimize resource allocation, and concentrate efforts on pivotal swing states that may determine the election's outcome. Analyzing polling data also reveals trends in voter sentiment, providing valuable insights into the electorate's priorities and concerns that can inform policy discussions. Ultimately, the findings from this study can improve the accuracy of predictions in a political landscape characterized by rapid change and polarization, thereby enhancing the relevance and reliability of electoral analyses. 
 
+The remainder of this paper is structured as follows: @sec-data-overview discusses the data sources and variables used in the analysis; #sec-Dataset-Features presents the visualization of results; @sec-data-cleaning explains the process of cleaning the data; @sec-model justifies the model setup, as well as assumptions and limitations; @sec-result presents the result of the models; @sec-discussion provides a discussion of the paper; @sec-appendix-one analyzed the methodology of The New York Times/Siena College pollster; @sec-appendix-two created an ideal survey of the poll. @sec-appendix-three provides a more detailed explanation of the models. Finally, @sec-reference provides a list of references.
 
 # Data {#sec-data}
 ## Data Acquisition {#sec-data-overview}
@@ -318,9 +319,9 @@ ggplot(data = wide_data, aes(x = end_date)) +
   )
 ```
 
-## Data Cleaning
+## Data Cleaning {#sec-data-cleaning}
 
-# Model
+# Model {#sec-model}
 ## Model Justification
 The unique structure of the electoral college voting system in the United States makes it unlikely for any candidate other than Donald Trump or Kamala Harris to be competitive in the 2024 presidential election. Given Trump's historical performance in previous campaigns, particularly the 2016 election, it is more insightful to model his election outcomes. To achieve this, we have decided to create a Bayesian Hierarchical Model.
 
@@ -380,7 +381,7 @@ Additionally, the model’s simplicity poses a limitation, as it does not consid
 This model designed specifically for the context of United States elections. It is built on assumptions inherent to the electoral college system, such as the presence of two dominant candidates and a winner-takes-all allocation of electoral seats. As a result, the insights derived from this model may not be easily generalizable to elections in different countries or political contexts.
 
 
-# Results
+# Results {#sec-result}
 
 ```{r}
 #| echo: false
@@ -453,7 +454,7 @@ However, it’s crucial to emphasize that we cannot confidently assert that Kama
 
 To quantify Trump’s chances of victory, we evaluated the cumulative distribution function (CDF) of the Beta distribution at the 50% threshold, which corresponds to the majority of electoral college seats. By subtracting this CDF value from 1, we calculated the probability of Trump winning the election. The result of this analysis indicates that Trump has a 35% probability of securing victory.
 
-# Discussion
+# Discussion {sec-discussion}
 
 ## First discussion point {#sec-first-point}
 
@@ -471,7 +472,7 @@ Weaknesses and next steps should also be included.
 
 \appendix
 
-# Appendix 1
+# Appendix 1 {#sec-appendix-one}
 
 The pollster that is chosen to be analyzed is The New York Times/Siena College. The population targeted by this poll consists of the entire U.S. electorate. The frame for the poll is derived from the L2 voter file, which is a nonpartisan database, and further supplemented by matched cellular telephone numbers from Marketing Systems Group (The New York Times, 2024). From this frame, respondents are randomly selected from a national list of registered voters to participated in telephone interviews in English and Spanish (The New York Times, 2024). To enhance its regional and demographic representativeness, the national poll includes separate samples for Florida (622 voters) and Texas (617 voters) and applies oversampling to ensure adequate responses from key demographic groups, specifically Black voters and Hispanic voters (The New York Times, 2024). The poll’s oversample includes 589 Black voters and 902 Hispanic voters, with subcategories for individuals identifying as a single or multiple races or ethnicities (The New York Times, 2024). By adjusting the weights of these subgroups in the final analysis, the poll aims to produce results reflective of the national electorate (The New York Times, 2024).
 
@@ -484,7 +485,7 @@ The questionnaire used in The New York Times/Siena College poll has several stre
 Despite these advantages, the questionnaire also faces several limitations. As response rates have decreased in recent years, the representativeness of telephone surveys has likely suffered, as individuals are more reluctant to answer phone calls from unfamiliar numbers. This trend has increased the costs of conducting such surveys, as more calls are needed to reach a proportional sample, and some demographic groups may remain underrepresented despite weighting adjustments (The New York Times, 2024). The reliance on telephone interviews also risks excluding younger voters and others who rely primarily on digital communication, potentially skewing the data if not properly addressed through demographic balancing and weighting. Additionally, while the questionnaire's margin of error provides a statistical measure of confidence, this margin can be significant, particularly in close races where even a two-point margin could change interpretations and outcomes. This issue highlights the limitations of polling as a "blunt instrument" where minor fluctuations in results can feel disproportionately impactful in a close election context (The New York Times, 2024).
 
 
-# Appendix 2 : Idealized Survey
+# Appendix 2 : Idealized Survey {#sec-appendix-two}
 
 We are provided a budget of $100'000 to forecast the 2024 presidential election. First we must define our key terms. We are looking to forecast the winner of the US general election, so our key parameter of interest for survey participants is the candidate they would support and/or vote for. There are other secondary parameters to discuss later. Our target population is registered voters in the US as they would be the ones informing our parameter of interest, with our sampling frame being registered voters that we can reach with our survey. The sample then is the registered voters who end up taking the survey. We must also define a sample size that is both realistically achievable, and adequately large to make a meaningful prediction of the election winner. A sample size in the range of 2500-6000 is within the realm of possibility and would be sufficient.
 
@@ -541,7 +542,7 @@ How well do you feel your most preferred candidate's policies address your conce
 What are your most top 3 most important issues when deciding who to vote for?
 How confident are you in the outcome of this 2024 election?
 
-# Appendix 3 : Model Details
+# Appendix 3 : Model Details {#sec-appendix-three}
 
 ## Alternate Models
 In our analysis, we considered two additional models: a similar Bayesian hierarchical model with a different prior and a logistic regression model.
@@ -592,6 +593,6 @@ ggplot(density_data, aes(x = x, y = density, color = label)) +
   )
 ```
 
-# References
+# References {#sec-reference}
 
 
