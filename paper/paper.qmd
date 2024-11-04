@@ -1,6 +1,6 @@
 ---
 title: "Forecasting the 2024 US General Election"
-subtitle: "Analyzing the influence state on election outcome by using 538 Pollster Data with Bayesian hierarchical model, Predicting Harris Victory[need more details in result]"
+subtitle: "Analyzing the Impact of Swing States on Election Outcomes Using 538's 2024 General Election Dataset"
 author: 
   - Tara Chakkithara
   - Sakura Hu
@@ -8,7 +8,7 @@ author:
 thanks: "Code and data are available at https://github.com/LukaTosic09/Forecasting-2024-Election"
 date: today
 date-format: long
-abstract: "This paper forecasts the outcome of the 2024 U.S. general election. Using the poll of polls approach, a generalized linear model was developed with data from FiveThirtyEight [more spcific on method, and what is the date cutoff of the data]  The model's prediction is based on the popular vote in the seven key swing states—Arizona, Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North Carolina to estimate the overall winner. Results indicate that Harris is predicted to win, by [how much? need to be more spcific on the result]. This suggests that current polling trends may provide reliable insights into the likely election result, though future shifts in voter sentiment could impact the final outcome."
+abstract: "This paper forecasts the outcome of the 2024 U.S. general election. Using the poll of polls approach, a bayesian hierarchical model was developed with data from FiveThirtyEight using polling data from July 21 to October 19, 2024. The model's prediction is based on the electoral college vote in the seven key swing states : Arizona, Nevada, Michigan, Georgia, Wisconsin, Pennsylvania, and North Carolina to estimate the overall winner. Results indicate that Harris is predicted to win with a probaility of 66%."
 format: pdf
 number-sections: true
 toc: true
