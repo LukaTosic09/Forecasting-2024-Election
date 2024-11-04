@@ -53,7 +53,7 @@ Each poll in the dataset has an associated pollscore, sample size, start date an
 
 ## Dataset Features {#sec-Dataset-Features}
 ### Pollscore
-The pollscore feature serves as a metric for evaluating the quality of a poll. It is a mesaurement that tries to quantify the realiablity of a poll. It is calculated based on factors such as poll transparency, bias, and error, @citeABC. A more negative pollscore indicates higher quality, reflecting a greater confidence in the poll's accuracy. As seen in @fig-pollscore, most polls collected by FiveThirtyEight have a pollscore under 0. In @fig-transparency, we see that lower poll scores are correlated with high transparency. 
+The pollscore feature serves as a metric for evaluating the quality of a poll. It is a mesaurement that tries to quantify the reliablity of a poll. It is calculated based on factors such as poll transparency, bias, and error, @citeABC. A more negative pollscore indicates higher quality, reflecting a greater confidence in the poll's accuracy. As seen in @fig-pollscore, most polls collected by FiveThirtyEight have a pollscore under 0. In @fig-transparency, we see that lower poll scores are correlated with high transparency. 
 
 ```{r, fig.width=5, fig.height=2.5}
 #| warning: false
@@ -141,13 +141,21 @@ ggplot(real_data, aes(x = sample_size)) +
 ```
 
 ### Percentage of Votes
-Each poll aims to . By examining how these values fluctuate over time and in response to different candidates, we can better understand their impact on public opinion. Currently, national level polls show Kamala Harris with a 46% approval rating compared to Donald Trump's 43%. This highlights the importance of candidate dynamics in shaping voter sentiment across the electorate.
+Each observation in the dataset (poll) has a PCT. This is the percentage of votes that a particular candidate recieved in the poll. The PCT attempts to measure voter sentiment in the United States and predict election outcomes using this quantified voter sentiment. PCT is distributed differently based on the candidate and the state of the poll. PCT values can also shift over time indicating a shift in voter sentiment. Currently, national level polls show that Kamala Harris has an approval rating of 48% while Donald Trump's approval rating is 46%, @cite538. Looking at trends in vote percentages will be crucial for data cleaning, and preventing model overfitting.   
+
+\newpage
 
 #### Candidates
+The United States has a strong two-party system, consisting of the Liberal Democratic Party and the Conservative Republican Party. At the beginning of the year, the primary candidates for the presidential race were current president Joe Biden representing the Democratic Party, and former president Donald Trump representing the Republican Party. However, after Biden withdrew from the race on July 21st, Kamala Harris emerged as the new front-runner for the Democratic Party.
+
+To analyze general voter sentiment in swing states for each candidate, we can examine the percentage of votes (PCT) associated with each party's main candidate in those states before and after Biden's withdrawal. A Democratic majority is represented in blue, while a Republican majority is depicted in red. As seen in @fig-inital-candidates, during Joe Biden's presidential run, Donald Trump had a higher average PCT. Notably, following Biden's exit, the Democratic Party seems to have gained increased support in key swing states such as Wisconsin, Michigan, and Pennsylvania, indicating a significant shift in voter sentiment toward Kamala Harris, @fig-candidates-after.
+
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
+#| label: fig-inital-candidates
+#| fig-cap: "Voter Sentiment in Swing States During Joe Biden's 2024 Presidential Campaign"
 library(sf)
 library(dplyr)
 library(tidyr)
@@ -202,7 +210,7 @@ ggplot(data = merged_data1) +
   scale_fill_manual(values = c("Donald Trump" = "red", "Joe Biden" = "blue", "Tie" = "gray"), 
                     name = "Winner") +
   labs(
-    title = "Voter Sentiment During Biden's Presidential Campaign",
+    title = "",
     x = NULL,
     y = NULL
   ) +
@@ -220,8 +228,8 @@ ggplot(data = merged_data1) +
 #| echo: false
 #| warning: false
 #| message: false
-#| label: fig-candidates
-#| fig-cap: "Voter Sentiment Before & After Biden's Candidacy Withdrawl"
+#| label: fig-candidates-after
+#| fig-cap: "Voter Sentiment in Swing States After Biden's Candidacy Withdrawl"
 data2 <- data %>%
   mutate(start_date = as.Date(sub("(..)$", "20\\1", start_date), format = "%m/%d/%Y")) %>%
   filter(start_date > biden_drop_date, pollscore < -1) %>%
@@ -252,7 +260,7 @@ ggplot(data = merged_data2) +
   scale_fill_manual(values = c("Donald Trump" = "red", "Kamala Harris" = "blue", "Tie" = "gray"), 
                     name = "Winner") +
   labs(
-    title = "Voter Sentiment After Biden Drops Out of the Presidential Race",
+    title = "",
     x = NULL,
     y = NULL
   ) +
@@ -265,7 +273,7 @@ ggplot(data = merged_data2) +
   )
 ```
 
-
+\pagebreak
 #### Poll End Date
 
 ```{r}
@@ -322,7 +330,6 @@ To clean this data, we first filtered out all hypothetical polls. Then, we filte
 Next, we wanted to focus only on high quality polls, so we filtered out all polls with a pollscore greater than zero.
 
 ## Data Cleaning
-
 
 # Model
 ## Model Justification
