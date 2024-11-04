@@ -548,15 +548,59 @@ How confident are you in the outcome of this 2024 election?
 
 
 
-# Additional data details
+# Additional Data Details
 
-# Model details {#sec-model-details}
+# Model Details {#sec-model-details}
 
+## Alternate Models
+In our analysis, we considered two additional models: a similar Bayesian hierarchical model with a different prior and a logistic regression model.
 
+We opted not to select logistic regression for several key reasons. First, generalized linear models (GLMs) provide point estimates or binary outcomes, whereas our objective was to capture a full probability distribution of the election outcomes, in addition to identifying a winner. Second, we observed that the percentage of votes (PCT) did not exhibit a linear relationship with any of its potential predictors. While this issue could potentially be addressed using splines or polynomial regression, we believed it would be better to use another modeling approach since we wanted to incorporate prior data as well. Due to this, we decided to adopt a Bayesian framework. 
 
+The first Bayesian hierarchical model we considered employed a prior of Beta(2, 3) to model the proportion of seats that Donald Trump would win. This model's mode closely reflects his his 2020 election results. However, we decided against this prior because we felt that the 2016 election more accurately represented the current circumstances. Notably, even with this model, we arrived at similar conclusions: Kamala Harris was still projected to win.
 
-## Posterior predictive check
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
 
+params <- data.frame(
+  shape1 = c(2, 5.67),
+  shape2 = c(3, 9.33),
+  label = c("Prior: Beta(2, 3)", "Updated: Beta(5.67, 9.33)")
+)
+
+x_values <- seq(0, 1, length.out = 100)
+
+density_data <- do.call(rbind, lapply(1:nrow(params), function(i) {
+  data.frame(
+    x = x_values,
+    density = dbeta(x_values, params$shape1[i], params$shape2[i]),
+    label = params$label[i]
+  )
+}))
+
+ggplot(density_data, aes(x = x, y = density, color = label)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Distribution of Donald Trump's Electoral College Seat Proportion",
+    x = "Probability",
+    y = "Density",
+    color = "Distribution"
+  ) +
+  theme_minimal() +
+  scale_color_manual(values = c("Prior: Beta(2, 3)" = "blue", "Updated: Beta(5.67, 9.33)" = "red")) +
+  theme(
+    plot.title = element_text(size = 10),
+    axis.title.x = element_text(size = 10),
+    axis.title.y = element_text(size = 10),
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 10)
+  )
+```
+
+## Posterior Predictive Check
 
 # References
 
